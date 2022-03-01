@@ -1,0 +1,40 @@
+﻿@{
+
+    ViewData["Title"] = "Login";
+}
+
+
+
+
+
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <form action="" method="post">
+            <h2><b>Kullanıcı Girişi</b></h2>
+            <div class="mb-3">
+                <label for="UserName" class="form-label">Kullanıcı adı</label>
+                <input type="text" class="form-control" id="UserName" name="Name" placeholder="Kullanıcı adı giriniz." maxlength="20" />
+                @{if (ViewData["UserNameError"]!="")
+                    {
+                        <div id="UserName" class="form-text">@ViewData["UserNameError"]</div>}
+                    else if (ViewData["UserNameEmpty"]!="")
+                    {<div id="UserName" class="form-text">@ViewData["UserNameEmpty"]</div>}}
+            </div>
+            <div class="mb-3">
+                <label for="UserPassword" class="form-label">Şifre</label>
+                <input type="password" class="form-control" id="UserPassword" name="Password" placeholder="Şifrenizi giriniz." maxlength="20" />
+                @{if (ViewData["PasswordError"]!="")
+                    {<div id="UserName" class="form-text"> @ViewData["PasswordError"] </div>}
+                    else if (ViewData["userpassEmpty"]!="")
+                    {<div id="UserName" class="form-text " ->@ViewData["UserPassEmpty"]</div>}}
+            </div>
+            <div>
+                <a href="/User/Register" class="btn btn-primary" type="button" id="RegisterButton">Kayıt Ol</a>
+                <button type="submit" class="btn btn-primary" id="LoginButton">Giriş yap</button>
+            </div>
+        </form>
+    </div>
+
+
+</div>

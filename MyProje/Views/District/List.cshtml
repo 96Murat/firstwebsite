@@ -1,0 +1,52 @@
+﻿@{
+    ViewData["Title"] = "İlçe listesi";
+}
+<div class="border bg-white">
+    <table class="table table-hover table-dark caption-top" style="table-layout:fixed;">
+        <caption>
+            <form class="float-end" action="/District/Create" method="get">
+                <input type="hidden" value=@ViewBag.CityId name="CityId" />
+                <input type="submit" class="btn btn-primary" value="EKLE" />
+            </form>
+            @*Model[0].City.Name İlçeleri*@
+        </caption>
+        <thead>
+            <tr>
+                <th scope="col">İlçeler</th>
+                <th scope="col">Yaşayan Kullanıcı Sayısı</th>
+                <th scope="col">Kayıtlı Adres Sayısı</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.DistrictName</td>
+                            <td>@item.UserCount</td>
+                            <td>@item.AddressCount</td>
+                            <td>
+                                <div class="row g-1">
+
+                                    <form class="col-auto" action="/District/Delete" method="post">
+                                        <input type="hidden" value=@item.Id name="Id" />
+                                        <input type="hidden" value=@item.CityId name="CityId" />
+                                        <input type="submit" class="btn btn-primary" value="Sil" />
+                                    </form>
+
+                                    <form class="col-auto" action="/District/Edit" method="get">
+                                        <input type="hidden" value=@item.Id name="Id" />
+                                        <input type="hidden" value=@item.CityId name="CityId" />
+                                        <input type="submit" class="btn btn-primary" value="Düzenle" />
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+        </tbody>
+    </table>
+</div>

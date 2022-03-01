@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Yeni Şehir Ekleme";
+}
+
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <form action="" method="post">
+            <fieldset>
+                <legend>Yeni Şehir Ekleme</legend>
+                <div class="mb-3">
+                    <label for="CityName" class="form-label">Şehir Adı</label>
+                    <input type="text" class="form-control" name="Name" placeholder="Şehir adı giriniz." maxlength="40" />
+                    @if (ViewData["emptyCityName"] != null)
+                        {<div class="form-text">@ViewData["emptyCityName"]</div>}
+                 
+                </div>
+                <div class="mb-3">
+                    <label for="CityCode" class="form-label">Şehir Kodu</label>
+                    <input type="number" class="form-control" name="Code" placeholder="Şehir kodunu giriniz." min="1" max="99" />
+                    @if (ViewData["emptyCityCode"] != null)
+                        {<div class="form-text">@ViewData["emptyCityCode"]</div>}
+                </div>
+                @if (ViewData["Success"] != null)
+                    {<div class="form-text">@ViewData["Success"]</div>}
+
+                <a href="/City/List" class="btn btn-primary" type="button">Vazgeç</a>
+                <input type="submit" class="btn btn-primary" value="Kaydet" />
+
+            </fieldset>
+        </form>
+
+    </div>
+
+
+</div>

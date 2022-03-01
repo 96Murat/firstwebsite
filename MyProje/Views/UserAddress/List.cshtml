@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Kullanıcı Adresleri";
+}
+
+<html>
+<body>
+    <div class="container">
+        <div class="row row-cols-4 g-2">
+            @{
+                if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+                        <div class="col">
+                            <div class="card" style="width: 16rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title">@item.Title</h5>
+                                    <p class="card-text">@item.Neighborhood Mahallesi, @item.Street Sokağı, No:@item.BuildingNo Daire:@item.AparmentNo</p>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">@item.District.Name</li>
+                                    <li class="list-group-item">@item.District.City.Name</li>
+                                </ul>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p>Kayıt bulunamadı.</p>
+                }
+            }
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+﻿@{
+    ViewData["Title"] = "Şehirler Listesi";
+}
+<div class="border bg-white">
+    <table class="table table-hover table-dark caption-top" style="table-layout:fixed;">
+        <caption>
+            ŞEHİRLER
+            <a href="/City/Create" class="btn btn-primary float-end">EKLE</a>
+        </caption>
+        <thead>
+            <tr>
+                <th scope="col" style="width:100px">İl Kodu</th>
+                <th scope="col">ŞEHİR</th>
+                <th scope="col">İlçe Sayısı</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.CityCode</td>
+                            <td>@item.CityName</td>
+                            <td>@item.DistrictCount</td>
+                            <td>
+                                <div class="row g-1">
+
+                                    <form class="col-auto" action="/District/List" method="get">
+                                        <input type="hidden" value=@item.Id name="CityId" />
+                                        <input type="submit" class="btn btn-primary" value="İlçeleri Göster" />
+                                    </form>
+
+                                    <form class="col-auto" action="/City/Delete" method="post">
+                                        <input type="hidden" value=@item.Id name="Id" />
+                                        <input type="submit" class="btn btn-primary" value="Sil" />
+                                    </form>
+
+                                    <form class="col-auto" action="/City/Edit" method="get">
+                                        <input type="hidden" value=@item.Id name="Id" />
+                                        <input type="submit" class="btn btn-primary" value="Düzenle" />
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+        </tbody>
+    </table>
+</div>

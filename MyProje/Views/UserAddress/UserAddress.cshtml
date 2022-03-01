@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Kullanıcı Adresleri";
+}
+<html>
+<body>
+    <div class="container">
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end"><a href="/UserAddress/Create" class="btn btn-primary" type="button">Ekle</a></div>
+        <div class="">
+            <div class="row row-cols-4">
+                @if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+                        <div class="col">
+                            <div class="card text-white bg-secondary mb-3" style="max-width:18rem;">
+                                <div class="card-header">@item.Title</div>
+                                <div class="card-body">
+                                    @*<h5 class="card-title"></h5>*@
+                                    <p class="card-text">Mahalle&nbsp;: @item.Neighborhood</p>
+                                    <p class="card-text">Sokak&emsp;: @item.Street</p>
+                                    <p class="card-text">No&emsp;&emsp;&nbsp;: @item.BuildingNo</p>
+                                    <p class="card-text">Daire&emsp;&nbsp;: @item.AparmentNo</p>
+                                </div>
+
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item text-white" style="background-color: rgba(0, 0, 0, 0.10)">İlçe&emsp;&emsp;: @item.District.Name</li>
+                                    <li class="list-group-item text-white" style="background-color: rgba(0, 0, 0, 0.10)">Şehir&emsp;&nbsp;: @item.District.City.Name</li>
+                                </ul>
+
+                                <div class="card-footer row row-cols-auto g-1">
+                                    <form action="/UserAddress/Edit" method="get">
+                                        <input type="hidden" value=@item.Id name="Id" />
+                                        <input type="submit" class="btn btn-primary" value="Düzenle" />
+                                    </form>
+
+                                    <form action="/UserAddress/Delete" method="post">
+                                        <input type="hidden" value=@item.Id name="Id" />
+                                        <input type="submit" class="btn btn-primary" value="Sil" />
+                                    </form>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

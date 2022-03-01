@@ -1,0 +1,88 @@
+﻿@{
+    ViewData["Title"] = "Adres Bilgileri Güncelleme";
+}
+<html>
+<body>
+    <form action="" method="post">
+        <style>
+            h6 {
+                color: red;
+            }
+        </style>
+        <div class="mb-3">
+            <div class="border px-2 pb-2">
+
+                <label for="AddressTitleEdit" class="form-label">Adres</label>
+                <input type="text" class="form-control" id="AddressTitleEdit" name="Title" value=@ViewBag.AddressTitle placeholder="Adres başlığı giriniz." maxlength="50" />
+                @{if (ViewData["emptyTitle"] != null)
+                    {<div class="form-text"><h6>@ViewData["emptyTitle"]</h6></div>}}
+                <div class="row">
+                    <div class="col">
+
+                        <label for="Citys" class="form-label">Şehir </label>
+                        <select id="Citys" class="form-select" onchange="getDistrict()">
+                            <option selected value=@ViewBag.CityId>@ViewBag.CityName</option>
+                            @foreach (var item in Model)
+                            {
+                                <option value=@item.Id>@item.CityName</option>
+
+                            }
+                        </select>
+                    </div>
+                    <div class="col">
+
+                        <label for="DistrictName" class="form-label">İlçe </label>
+                        <select id="DistrictName" class="form-select" name="DistrictId">
+                            <option selected value=@ViewBag.DistrictId>@ViewBag.DistrictName</option>
+                        </select>
+                        @{if (ViewData["emptyDistrictName"] != null)
+                            {<div class="form-text"><h6>@ViewData["emptyDistrictName"]</h6></div>}}
+                    </div>
+                    <div class="row"></div>
+                    <div class="col">
+                        <label for="Neighborhood" class="form-label">Mahalle</label>
+                        <input type="text" class="form-control" id="NeighborhoodEdit" name="Neighborhood" value=@ViewBag.Neighborhood placeholder="Mahalle giriniz." maxlength="60" />
+                        @{if (ViewData["emptyNeighborhood"] != null)
+                            {<div class="form-text"><h6>@ViewData["emptyNeighborhood"]</h6></div>}}
+                    </div>
+
+                    <div class="col">
+
+                        <label for="Street" class="form-label">Sokak</label>
+                        <input type="text" class="form-control" id="StreetEdit" name="Street" value=@ViewBag.Street placeholder="Sokak giriniz." maxlength="60" />
+                        @{if (ViewData["emptyStreet"] != null)
+                            {<div class="form-text"><h6>@ViewData["emptyStreet"]</h6></div>}}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+
+                        <label for="BuildingNo" class="form-label">Bina No</label>
+                        <input type="text" class="form-control" id="BuildingNoEdit" name="BuildingNo" value=@ViewBag.BuildingNo placeholder="Bina no giriniz." maxlength="10" />
+                        @{if (ViewData["emptyBuildingNo"] != null)
+                            {<div class="form-text"><h6>@ViewData["emptyBuildingNo"]</h6></div>}}
+                    </div>
+
+                    <div class="col">
+                        <label for="AparmentNo" class="form-label">Daire No</label>
+                        <input type="text" class="form-control" id="AparmentNoEdit" name="AparmentNo" value=@ViewBag.AparmentNo placeholder="Daire no giriniz." maxlength="10" />
+                        @{if (ViewData["emptyAparmentNo"] != null)
+                             {<div class="form-text"><h6>@ViewData["emptyAparmentNo"]</h6></div>}}
+                    </div>
+                    @if (ViewData["Error"] != null)
+                        {<div class="form-text"><h6>@ViewData["Error"]</h6></div>}
+                </div>
+            </div>
+        </div>
+
+
+        <div>
+            <a href="/UserAddress/UserAddress" class="btn btn-primary" type="button">İptal</a>
+            <input type="hidden" name="UserId" value=@ViewBag.UserId />
+            <button type="submit" class="btn btn-primary" id="AddressUpdate">Güncelle</button>
+        </div>
+    </form>
+    <script src="~/js/getDistrict.js"></script>
+</body>
+</html>

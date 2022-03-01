@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Şehir Bilgi güncelleme";
+}
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <form method="post">
+            <h2><b>Şehir Bilgileri Güncelleme</b></h2>
+
+            <div class="mb-3">
+                <label for="Code" class="form-label">Şehir Kodu</label>
+                <input type="number" class="form-control" id="Code" name="Code" value=@ViewBag.CityCode min="1" max="99" style="width:50px" />
+                @if (ViewData["CityCodeInfo"] != null)
+                {
+                    <div>@ViewData["CityCodeInfo"]</div>
+                }
+            </div>
+            <div class="mb-3">
+                <label for="Name" class="form-label">Şehir Adı</label>
+                <input type="text" class="form-control" id="Name" name="Name" value=@ViewBag.CityName maxlength="40" />
+                @if (ViewData["CityNameInfo"] != null)
+                {
+                    <div>@ViewData["CityNameInfo"]</div>
+                }
+            </div>
+            @if (ViewData["emptyCityInfo"] != null)
+            {
+                <div class="form-text">@ViewData["emptyCityInfo"]</div>
+            }
+            <div>
+                <a href="/City/List" class="btn btn-primary" type="button">Vazgeç</a>
+                <input type="submit" class="btn btn-primary" value="Bilgileri Güncelle" />
+                @if (ViewData["Success"] != null)
+                {
+                    <div class="form-text"> @ViewData["Success"] </div>
+                }
+            </div>
+        </form>
+    </div>
+</div>

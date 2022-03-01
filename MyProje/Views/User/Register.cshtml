@@ -1,0 +1,119 @@
+﻿@{
+    ViewData["Title"] = "Register";
+}
+
+<html>
+<body>
+    <style>
+        h6 {
+            color: red;
+        }
+    </style>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+
+            <form method="post">
+                <h2><b>Kayıt Ol</b></h2>
+                <div class="mb-3">
+                    <label for="RegisterUserName" class="form-label">Kullanıcı adı</label>
+                    <input type="text" class="form-control" id="RegisterUserName" name="Name" placeholder="Kullanıcı adı giriniz." maxlength="20" />
+                    @{if (ViewData["emptyUsername"] != null)
+                    {
+                    <div id="lbUserName" class="form-text"><h6>@ViewData["emptyUsername"]</h6></div>}
+                    else if (ViewData["RegisterControlUsername"] != null)
+                    { <div id="lbUserName" class="form-text"><h6>@ViewData["RegisterControlUsername"]</h6></div>} }
+                </div>
+                <div class="mb-3">
+                    <label for="RegisterUserPassword" class="form-label">Şifre</label>
+                    <input type="password" class="form-control" id="RegisterUserPassword" name="Password" placeholder="Şifrenizi giriniz." maxlength="20" />
+                    @{if (ViewData["emptyPassword"] != null)
+                    {<div id="lbRegisterUserPassword" class="form-text"><h6>@ViewData["emptyPassword"]</h6></div>}}
+                </div>
+                <div class="mb-3">
+                    <label for="RegisterUserEmail" class="form-label">E-mail</label>
+                    <input type="text" class="form-control" id="RegisterUserEmail" name="Email" placeholder="E-mail adresinizi giriniz." maxlength="40" />
+                    @{if (ViewData["emptyEmail"] != null)
+                    {<div id="lbUserEmail" class="form-text"> <h6>@ViewData["emptyEmail"]</h6></div>}
+                    else if (ViewData["RegisterControlEmail"] != null)
+                    { <div id="lbUserEmail" class="form-text"><h6>@ViewData["RegisterControlEmail"]</h6></div>} }
+                </div>
+                <div class="mb-3">
+                    <div class="border px-2 pb-2">
+
+                        <label for="AddressTitle" class="form-label">Adres</label>
+                        <input type="text" class="form-control" id="AddressTitle" name="Title" placeholder="Adres başlığı giriniz." maxlength="50" />
+                        @{if (ViewData["emptyTitle"] != null)
+                        {<div id="lbRegisterUserPassword" class="form-text"><h6>@ViewData["emptyTitle"]</h6></div>}}
+                        <div class="row">
+                            <div class="col">
+
+                                <label for="Citys" class="form-label">Şehir </label>
+                                <select id="Citys" class="form-select" onchange="getDistrict()">
+                                    <option disabled selected hidden>Şehir Seçiniz.</option>
+                                    @foreach (var item in Model)
+                                    {
+                                    <option value=@item.Id>@item.CityName</option>
+
+                                    }
+                                </select>
+                            </div>
+                            <div class="col">
+
+                                <label for="DistrictName" class="form-label">İlçe </label>
+                                <select id="DistrictName" class="form-select" name="DistrictId">
+                                    <option disabled selected hidden>İlçe seçiniz.</option>
+                                </select>
+                                @{if (ViewData["emptyDistrictName"] != null)
+                                {<div id="lbRegisterUserPassword" class="form-text"><h6>@ViewData["emptyDistrictName"]</h6></div>}}
+                            </div>
+                            <div class="row"></div>
+                            <div class="col">
+                                <label for="Neighborhood" class="form-label">Mahalle</label>
+                                <input type="text" class="form-control" id="Neighborhood" name="Neighborhood" placeholder="Mahalle giriniz." maxlength="60" />
+                                @{if (ViewData["emptyNeighborhood"] != null)
+                                {<div id="lbRegisterUserPassword" class="form-text"><h6>@ViewData["emptyNeighborhood"]</h6></div>}}
+                            </div>
+
+                            <div class="col">
+
+                                <label for="Street" class="form-label">Sokak</label>
+                                <input type="text" class="form-control" id="Street" name="Street" placeholder="Sokak giriniz." maxlength="60" />
+                                @{if (ViewData["emptyStreet"] != null)
+                                {<div id="lbRegisterUserPassword" class="form-text"><h6>@ViewData["emptyStreet"]</h6></div>}}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+
+                                <label for="BuildingNo" class="form-label">Bina No</label>
+                                <input type="text" class="form-control" id="BuildingNo" name="BuildingNo" placeholder="Bina no giriniz." maxlength="10" />
+                                @{if (ViewData["emptyBuildingNo"] != null)
+                                    {<div id="lbRegisterUserPassword" class="form-text"><h6>@ViewData["emptyBuildingNo"]</h6></div>}}
+                            </div>
+
+                            <div class="col">
+                                <label for="AparmentNo" class="form-label">Daire No</label>
+                                <input type="text" class="form-control" id="AparmentNo" name="AparmentNo" placeholder="Daire no giriniz." maxlength="10" />
+                                @{if (ViewData["emptyAparmentNo"] != null)
+                                    {<div id="lbRegisterUserPassword" class="form-text"><h6>@ViewData["emptyAparmentNo"]</h6></div>}}
+                            </div>
+                            @if (ViewData["Error"] != null)
+                            {
+                                <div id="lbRegisterUserPassword" class="form-text"><h6>@ViewData["Error"]</h6></div>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+
+                <div>
+                    <button type="submit" class="btn btn-primary" id="RegisterButton"> Kayıt Ol</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="/js/getDistrict.js"></script>
+</body>
+</html>

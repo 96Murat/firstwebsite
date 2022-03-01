@@ -1,0 +1,64 @@
+﻿@{
+    ViewData["Title"] = "Üyeler";
+}
+<div class="border bg-white">
+    <table class="table table-hover table-dark caption-top" style="table-layout:fixed;">
+        <caption>Kullanıcı Listesi</caption>
+        <thead>
+            <tr>
+
+                <th scope="col" style="width:60px">#</th>
+                <th scope="col">İsim</th>
+                <th scope="col">Email</th>
+                <th scope="col">Şehir</th>
+                <th scope="col">Kayıtlı Adres Sayısı</th>
+                <th scope="col" style="width:400px"></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                if (item.Name != ViewBag.UName)
+                {
+                    <tr>
+                        <th scope="row">@item.Id</th>
+                        <td>@item.Name</td>
+                        <td>@item.Email</td>
+                        <td>@item.District.Name / @item.District.City.Name</td>
+                        <td>@item.AddressCount</td>
+                        <td>
+                            <div class="row g-1">
+
+                                <form class="col-auto" action="/UserAddress/List" method="get">
+                                    <input type="hidden" value=@item.Id name="UserId" />
+                                    <input type="submit" class="btn btn-primary" value="Adresler" />
+                                </form>
+
+                                <form class="col-auto" action="/User/MakeAdmin" method="post">
+                                    <input type="hidden" value=@item.Id name="Id" />
+                                    @if (item.IsAdmin)
+                                    {
+                                        <input type="submit" class="btn btn-primary" value="Adminlikten çıkart" />
+                                    }
+                                    else
+                                    {
+                                        <input type="submit" class="btn btn-primary" value="Admin yap" />
+
+                                    }
+                                </form>
+
+                                <form class="col-auto" action="/User/Delete" method="post">
+                                    <input type="hidden" value=@item.Id name="UserId" />
+                                    <input type="submit" class="btn btn-primary" value="Sil" />
+                                </form>
+
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+
+    </table>
+</div>

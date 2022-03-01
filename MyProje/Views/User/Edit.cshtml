@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Bilgi güncelleme";
+}
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <form action="" method="post">
+            <h2><b>Kullanıcı Bilgileri Güncelleme</b></h2>
+            <div class="mb-3">
+                <label class="form-label">Kullanıcı adınız: @ViewBag.UName </label>
+            </div>
+
+            <div class="mb-3">
+                <label for="RegisterUserEmail" class="form-label">Mevcut Şifreniz</label>
+                <input type="password" class="form-control" id="UserPassword" name="Password" placeholder="Mevcut şifrenizi giriniz." maxlength="40" />
+                @{if (ViewData["errorPassword"] != "")
+                    {<div id="lbUserEmail" class="form-text">@ViewData["errorPassword"] </div>}
+                if (ViewData["emptyPassword"] != "")
+                {<div id="lbUserEmail" class="form-text"> @ViewData["emptyPassword"] </div>}
+                }
+            </div>
+            <div class="mb-3">
+                <label for="RegisterUserEmail" class="form-label">Yeni Şifre Giriniz</label>
+                <input type="password" class="form-control" name="NewPassword" placeholder="Yeni şifrenizi giriniz." maxlength="40" />
+                <input type="password" class="form-control" name="NewPasswordAgain" placeholder="Yeni şifrenizi tekrar giriniz." maxlength="40" />
+                @{if (ViewData["emptynewPassword"] != "")
+                    {<div id="lbUserEmail" class="form-text">@ViewData["emptynewPassword"] </div>}
+                else if (ViewData["errornewPassword"] != "")
+                {<div id="lbUserEmail" class="form-text"> @ViewData["errornewPassword"] </div>}
+            else if (ViewData["errorAgainnewPassword"] != "")
+            {<div id="lbUserEmail" class="form-text"> @ViewData["errorAgainnewPassword"] </div>}}
+            </div>
+
+            <div>
+                <input type="hidden" name="Id" value=@ViewBag.UserId />
+                <button type="submit" class="btn btn-primary" id="newPasswordButton"> Şifre değiştir</button>
+                @{ if (ViewData["Success"] != "")
+                    {<div class="form-text">@ViewData["Success"] </div> } }
+            </div>
+        </form>
+    </div>
+</div>

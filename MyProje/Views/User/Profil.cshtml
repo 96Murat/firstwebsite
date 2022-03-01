@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Profil";
+}
+
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <h2><b>Kullanıcı Profili</b></h2>
+        <div class="mb-3">
+            <label class="form-label">Kullanıcı adınız: @ViewBag.Name </label>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">E-mail adresiniz: @ViewBag.Email </label>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">
+                Yaşadığınız şehir: @ViewBag.City / @ViewBag.District
+
+            </label>
+        </div>
+        <div class="row row-cols-auto">
+            <form class="col" action="/UserAddress/UserAddress" method="post">
+                <input type="submit" class="btn btn-primary" value="Adreslerim" />
+            </form>
+            <div class="col">
+                <a href="/User/Edit" class="btn btn-primary" type="button" id="newPasswordButton">Şifre değiştir</a>
+            </div>
+        </div>
+    </div>
+</div>

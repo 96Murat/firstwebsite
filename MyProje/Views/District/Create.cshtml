@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "İlçe Ekleme";
+}
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+
+        <form action="" method="post">
+            <fieldset>
+                <legend>Yeni İlçe Ekleme</legend>
+                <div class="mb-3">
+                    <label for="DistrictName" class="form-label">İlçe Adı</label>
+                    <input type="text" class="form-control" id="DistrictName" name="Name" placeholder="İlçe adı giriniz." maxlength="40" />
+                    @{ if (ViewData["emptyDistrictName"] != null)
+                        {
+                            <div class="form-text">@ViewData["emptyDistrictName"]</div>
+                        }
+                    }
+                </div>
+                @{ if (ViewData["Success"] != null)
+                    {
+                        <div class="form-text">@ViewData["Success"]</div>
+                    }
+                }
+                <a href="/District/List?CityId=@ViewBag.CityId" class="btn btn-primary" type="button">Vazgeç</a>
+                <input type="hidden" name="CityId" value=@ViewBag.CityId />
+                <input type="submit" class="btn btn-primary" value="Kaydet" />
+
+            </fieldset>
+        </form>
+
+    </div>
+
+
+</div>
